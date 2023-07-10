@@ -47,7 +47,7 @@ function Welcome() {
 
   useEffect(() => {
     if (isRegistered) {
-      router.push('/dashboard');
+      router.push("/dashboard");
     }
   }, [isRegistered, router]);
   
@@ -88,7 +88,7 @@ function Welcome() {
   const handleSaveProfilePicture = () => {
     const user = gun.get(session?.user.address);
     user.get('pfp').put(profilePicture);
-    router.push('/dashboard');
+    router.push("/dashboard");
   };
 
   function handleProfilePictureChange(event) {

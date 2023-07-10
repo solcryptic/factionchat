@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useTransition } from "react";
 import styles from "../styles/User.module.css";
-import { getSession,useSession, signOut } from "next-auth/react";
+import { getSession, useSession, signOut } from "next-auth/react";
 import UserData from "../app/components/userData/userData";
 import LogoutBtn from "../app/components/logoutBtn/logoutBtn";
 import { WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
@@ -28,8 +28,8 @@ export async function getServerSideProps(context) {
 export default function Home({ userSession }) {
   const { publicKey, disconnecting } = useWallet();
   const [isPending, startTransition] = useTransition();
-  
- 
+
+
 
   useEffect(() => {
     startTransition(() => {
@@ -49,11 +49,11 @@ export default function Home({ userSession }) {
     });
   }, [disconnecting]);
 
-  
+
 
   if (userSession) {
     return (
-      
+
       // <div className={styles.body}>
       //   {!isPending && (
       //     <div>
@@ -62,8 +62,8 @@ export default function Home({ userSession }) {
 
       //       <>
 
-          
-         
+
+
       //         <UserData />
       //         <div className={styles.buttonsRow}>
       //           {publicKey ? (
@@ -73,27 +73,28 @@ export default function Home({ userSession }) {
       //           )}
       //         </div>
       //         <div>
-          
+
       //         </div>
-              
+
       //       </>
       //       </div>
       //     </div>
-         
+
       //   )}
       // </div>
       <div>
-      <div>  <Layout/> </div>
-                   {/* <div className={styles.buttonsRow}>
+        {/* <div>  <Layout /> </div> */}
+        hi
+        {/* <div className={styles.buttonsRow}>
                 {publicKey ? (
                   <WalletDisconnectButton />
                 ) : (
                   !disconnecting && <LogoutBtn />
                 )}
               </div> */}
-              {/* <WalletDisconnectButton/>
+        {/* <WalletDisconnectButton/>
               <LogoutBtn/> */}
-              </div>
+      </div>
     );
   }
 }
