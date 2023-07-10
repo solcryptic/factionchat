@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Gun from 'gun';
 import axios from 'axios';
+import Image from 'next/image';
 
 const gun = Gun({
   peers: ['https://peer.wallie.io/gun'],
@@ -122,16 +123,10 @@ function Welcome() {
 
   const address = session?.user.address || '';
 
-  useEffect(() => {
-    if (address) {
-      fetchAddress();
-    }
-  }, [address]);
-
   const fetchAddress = async () => {
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await fetch('/api/getNFTs', {
         method: 'POST',
@@ -140,20 +135,19 @@ function Welcome() {
         },
         body: JSON.stringify({ address, network }),
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to fetch NFTs');
       }
-
+  
       const data = await response.json();
-    //   console.log('Data:', data); 
-
+  
       // Extract the relevant properties from the data object
       const extractedNFTs = data.map((item) => ({
         associatedTokenAddress: item.associatedTokenAddress,
         mint: item.mint,
       }));
-
+  
       setContractAddresses(extractedNFTs);
     } catch (error) {
       setError(error.message);
@@ -161,12 +155,12 @@ function Welcome() {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
-    if (contractAddress) {
-      fetchNFTs();
+    if (address) {
+      fetchAddress();
     }
-  }, [contractAddress]);
+  }, [address]);
 
   const fetchNFTs = async () => {
     setLoading(true);
@@ -218,6 +212,15 @@ function Welcome() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (contractAddress) {
+      fetchNFTs();
+    }
+  }, [contractAddress, fetchNFTs]);
+  
+
+  
 
   useEffect(() => {
     fetchNFTs();
@@ -340,12 +343,7 @@ function Welcome() {
 
                       <div className="relative inline-block">
                         {profilePicture ? (
-                          <img
-                            src={profilePicture}
-                            alt="Profile"
-                            className="w-40 h-40 rounded-full hover:bg-gray-900 "
-                            onClick={handleDropdownToggle}
-                          />
+                         <Image src={profilePicture} alt="Profile" width={40} height={40} className="rounded-full hover:bg-gray-900" onClick={handleDropdownToggle} />
                         ) : (
                           <div></div>
                         )}

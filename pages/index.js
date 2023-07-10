@@ -24,7 +24,8 @@ export default function Home() {
     startTransition(() => {
       session && status === "authenticated" && router.push("./welcome");
     });
-  }, [session, status]);
+  }, [session, status, router]);
+  
 
   useEffect(() => {
     startTransition(() => {
