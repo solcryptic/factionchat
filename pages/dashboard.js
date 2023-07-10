@@ -4,7 +4,7 @@ import Layout from '../app/components/Layout'
 function dashboard() {
   return (
     <div>
-        <Layout/>
+        hi wassup
     </div>
   )
 }
