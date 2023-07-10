@@ -29,7 +29,6 @@ export default function Home({ userSession }) {
   const { publicKey, disconnecting } = useWallet();
   const [isPending, startTransition] = useTransition();
   
-  const { data: session } = useSession();
  
 
   useEffect(() => {
