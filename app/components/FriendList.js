@@ -43,7 +43,9 @@ function FriendList() {
           return [...prevFriends, friend];
         }
       });
-  
+
+      
+
       // Fetch the profile picture for each friend
       const friendProfilePictureUrl = gun.get(address).get('pfp');
       friendProfilePictureUrl.on((data) => {
