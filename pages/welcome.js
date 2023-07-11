@@ -45,11 +45,11 @@ function Welcome() {
   }, [session]);
   
 
-  // useEffect(() => {
-  //   if (isRegistered) {
-  //     router.push("/dashboard");
-  //   }
-  // }, [isRegistered, router]);
+  useEffect(() => {
+    if (isRegistered) {
+      router.push("/dashboard");
+    }
+  }, [isRegistered, router]);
   
   
 
