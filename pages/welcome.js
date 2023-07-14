@@ -4,10 +4,16 @@ import { useRouter } from 'next/router';
 import Gun from 'gun';
 import axios from 'axios';
 import Image from 'next/image';
+import { tmpdir } from 'os';
 
+const tmpDirectory = tmpdir();
+  
 const gun = Gun({
-  peers: ['https://peer.wallie.io/gun'],
-});
+  peers: [
+    'https://peer.wallie.io/gun'
+  ],
+  file: `${tmpDirectory}/radata`
+})
 
 function Welcome() {
   const { data: session } = useSession();

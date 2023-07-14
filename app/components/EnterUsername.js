@@ -2,15 +2,24 @@ import { useState, useEffect } from 'react';
 import { useSession } from "next-auth/react";
 import Gun from 'gun';
 import Addfriend from './Addfriend';
+import { tmpdir } from 'os';
 
 function EnterUsername() {
   const { data: session, status } = useSession();
   const [username, setUsername] = useState('');
   const [currentUsername, setCurrentUsername] = useState('');
 
+
+
+  const tmpDirectory = tmpdir();
+  
   const gun = Gun({
-    peers: ['https://peer.wallie.io/gun'],
-  });
+    peers: [
+      'https://peer.wallie.io/gun'
+    ],
+    file: `${tmpDirectory}/radata`
+  })
+  
 
   useEffect(() => {
     gun.get(session?.user.address).get("username").on((data) => {

@@ -16,10 +16,7 @@ export default function Home() {
 
   
   
-  const gun = Gun({
-    peers: ['https://peer.wallie.io/gun'],
-  });
-
+ 
   useEffect(() => {
     startTransition(() => {
       session && status === "authenticated" && router.push("./welcome");

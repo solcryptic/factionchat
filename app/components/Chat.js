@@ -2,10 +2,17 @@ import { useEffect, useState, useRef } from 'react';
 import Gun from 'gun';
 import { useSession } from 'next-auth/react';
 import EmojiPicker from 'emoji-picker-react';
+import { tmpdir } from 'os';
+
+const tmpDirectory = tmpdir();
 
 const gun = Gun({
-  peers: ['https://peer.wallie.io/gun'],
-});
+  peers: [
+    'https://peer.wallie.io/gun'
+  ],
+  file: `${tmpDirectory}/radata`
+})
+
 
 function Chat({ userAddress, friend }) {
   const { data: session, status } = useSession();
