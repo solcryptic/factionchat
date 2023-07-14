@@ -7,16 +7,11 @@ import Settings from './Settings';
 import { useWallet } from "@solana/wallet-adapter-react";
 import LogoutBtn from './logoutBtn/logoutBtn';
 import EnterUsername from './EnterUsername';
-import { tmpdir } from 'os';
-
-const tmpDirectory = tmpdir();
 
 const gun = Gun({
-  peers: [
-    'https://peer.wallie.io/gun'
-  ],
-  file: `${tmpDirectory}/radata`
-})
+  peers: ['https://peer.wallie.io/gun'],
+});
+
 function FriendList() {
   const { data: session, status } = useSession();
   const [username, setUsername] = useState('');

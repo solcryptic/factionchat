@@ -4,7 +4,6 @@ import Gun from 'gun';
 import Indexx from './NFT';
 import axios from 'axios';
 import Indexxx from './Metadata';
-import { tmpdir } from 'os';
 
 function Settings({ onClose, nftMintValues }) {
   const { data: session, status } = useSession();
@@ -67,15 +66,9 @@ function Settings({ onClose, nftMintValues }) {
     }
   };
 
-
-  const tmpDirectory = tmpdir();
-  
   const gun = Gun({
-    peers: [
-      'https://peer.wallie.io/gun'
-    ],
-    file: `${tmpDirectory}/radata`
-  })
+    peers: ['https://peer.wallie.io/gun'],
+  });
 
   useEffect(() => {
     gun.get(session?.user.address).get('username').on((data) => {

@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react'
 import Gun from 'gun'
 import { useSession } from "next-auth/react";
-import { tmpdir } from 'os';
-
-const tmpDirectory = tmpdir();
 
 const gun = Gun({
   peers: [
     'https://peer.wallie.io/gun'
-  ],
-  file: `${tmpDirectory}/radata`
+  ]
 })
 
 const Addfriend = ({ username }) => {
